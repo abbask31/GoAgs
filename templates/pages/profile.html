@@ -1,0 +1,42 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>{{ session.user.extras.name }}</h1>
+</div>
+
+
+<p class="lead">Tickets</p>
+<ul class="list-group list-group-flush">
+  {% for ticket in session.user.tickets %}
+    <li class="list-group-item flex-fill" 
+    style="
+      {% if ticket.checked_in %}
+        background-color: #B3A369;
+        color: white;
+        font-weight: bold
+      {% endif %}
+    ">
+      
+      <a href="./ticket/{{ ticket.tid }}"
+      style="
+        {% if ticket.checked_in %}
+          color: white;
+        {% endif %}
+          color: black
+      ">
+        {{ ticket.sport }} on {{ ticket.date }}
+      </a>
+
+      <form id="removeticket {{ ticket.tid }}" method="post" action="/removeticket/{{ ticket.tid }}"></form>
+        <a onclick="document.getElementById('removeticket {{ ticket.tid }}').submit();"><i class="fas fa-trash-alt text-danger">x</i></a>
+      </form>
+
+      <form id="locationcheck {{ ticket.tid }}" method="get" action="/locationcheck/{{ ticket.tid }}"></form>
+        <a onclick="document.getElementById('locationcheck {{ ticket.tid }}').submit();"><i>Check In</i></a>
+      </form>
+
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

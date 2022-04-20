@@ -1,0 +1,13 @@
+{% extends 'layouts/form.html' %}
+{% block title %}Confirm{% endblock %}
+{% block content %}
+  <form method="post" class="form">
+    <h3 class="form-heading">Ticket Purchase Confirmation <a href="{{ url_for('home') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
+    <h4> Details </h4>
+    <strong> Email </strong> <p> {{ data.email }} </p>
+    <strong> Sport </strong> <p> {{ data.sport }} </p>
+    <strong> Date </strong>  <p> {{ data.date }} </p>
+    <strong> Location </strong>  <p> {{ data.location }} </p>
+    <input type="submit" value="Purchase" class="btn btn-primary btn-lg btn-block" >
+  </form>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+
+<div class="page-header">
+  <h1>Welcome back, {{ session.user.extras.name }}</h1>
+</div>
+
+<!-- CALENDAR MAIN -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css" />
+<script>
+  var userJSON   = JSON.parse({{ session.userJSON | tojson }})
+
+  console.log(userJSON.tickets)
+
+  var eventsJSON = JSON.parse({{ session.eventsJSON | tojson }})
+  var myEvents     = []
+  
+  // Looping through event JSON array and creating new array for calendar
+  for (let event of eventsJSON) {
+
+
+    var newEvent = {
+      id: event.id,
+      title: event.sport,
+      start: event.date,
+      description: event.loc,
+      backgroundColor: "#002855",
+      borderColor: "#002855"
+    }
+    
+    for (let ticket of userJSON.tickets) {
+
+      if (event.id == ticket.eventid) {
+        newEvent.backgroundColor = "#B3A369",
+        newEvent.borderColor= "#B3A369"
+        if (ticket.checked_in) {
+
+          newEvent.backgroundColor = "#7BAE37",
+          newEvent.borderColor= "#7BAE37"
+        }
+      }
+    }
+    myEvents.push(newEvent)
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+
+      initialView: 'dayGridMonth',
+      nowIndicator: true,
+
+
+      events: myEvents,
+      eventClick: function(info) {
+        event = info.event
+        console.log(event.id)
+        if (event.id) {
+          location.href = "/buy/"+event.id;
+          return false;
+        }
+      }
+    });
+    calendar.render();
+  });
+</script>
+<div id='calendar'></div>
+<!-- END CALENDAR MAIN -->
+{% endblock %} 

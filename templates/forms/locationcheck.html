@@ -1,0 +1,9 @@
+{% extends 'layouts/form.html' %}
+{% block title %}Confirm{% endblock %}
+{% block content %}
+  <form method="post" class="form" action="/locationcheck/{{ ticketID }}/True">
+    <h3 class="form-heading">Location Use Confirmation <a href="{{ url_for('home') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
+    <h4> Are you okay with sharing your device's location with #GOAGS.tech? </h4>
+    <input type="submit" value="Confirm" class="btn btn-primary btn-lg btn-block" >
+  </form>
+{% endblock %}
