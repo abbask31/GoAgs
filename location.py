@@ -3,7 +3,7 @@ import db_functions
 import geopy
 from geopy.distance import *
 
-API_KEY = 'AIzaSyBqFc48tsnMHLcWGhIWzwukMw5vFgelDfw'
+API_KEY = 'API_KEY'
 
 def location_check_prompt(consent, game_location, ucd_email, ticket):
     # use html alert to ask user to agree to share their location
