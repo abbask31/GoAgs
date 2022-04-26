@@ -3,9 +3,9 @@ import db_functions
 from datetime import datetime, timedelta, date
 
 # Your Account SID from twilio.com/console
-account_sid = "AC7bebec0143a2c72b84908186e466525c"
+account_sid = "KEY"
 # Your Auth Token from twilio.com/console
-auth_token  = "7691a14bdaa63b2c55cf6ae570674bf9"
+auth_token  = "TOKEN"
 
 client = Client(account_sid, auth_token)
 
