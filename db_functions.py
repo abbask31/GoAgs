@@ -3,7 +3,7 @@ import hashlib
 import itertools
 
 # MongoDB Connection #
-cluster = MongoClient("mongodb+srv://abbask31:aggletes.tech@cluster0.8dwgr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+cluster = MongoClient("mongodb+srv://PASS:KEYh@cluster0.8dwgr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 db = cluster["Agletes"]
 collection = db["users"]
 
